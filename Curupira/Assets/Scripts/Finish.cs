@@ -16,7 +16,7 @@ public class Finish : MonoBehaviour
 
             if (countEnemies <= 0)
             {
-                print("Voce Venceu");
+                GameManager.instance.Win();
             }
         }
     }

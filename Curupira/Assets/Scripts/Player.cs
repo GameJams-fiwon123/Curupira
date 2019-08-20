@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    [Header("Settings")]
-    [SerializeField] float speed = 100;
+    [SerializeField]
+    private GameObject footprintPrefab = null;
+    private bool canPutFootprint = true; 
 
-    private Rigidbody2D rb;
+    private Rigidbody2D rb = null;
     private List<Vector2> motions = new List<Vector2>();
 
     private Vector3 savePosition;
@@ -67,6 +68,7 @@ public class Player : MonoBehaviour
     void Move()
     {
         GetNextPosition();
+        PutFootprint();
         ProcessMove();
     }
 
@@ -91,15 +93,55 @@ public class Player : MonoBehaviour
             motion.y = motions[0].y / 10;
 
             transform.position = transform.position + motion;
-            //rb.velocity = motions[0].normalized * Time.deltaTime * speed;
-            //float distance = Vector2.Distance(transform.position, newPosition);
 
-            //print(transform.position + "  " + newPosition);
             if (transform.position == newPosition)
             {
                 motions.RemoveAt(0);
                 newPosition = Vector3.zero;
+                canPutFootprint = true;
             }
+        }
+    }
+
+    private void PutFootprint()
+    {
+        if (canPutFootprint)
+        {
+            if (newPosition != Vector3.zero)
+            {
+                Vector3 direction = newPosition - transform.position;
+                direction = direction.normalized;
+
+                GameObject instanceFootprint = Instantiate(footprintPrefab, transform.position, Quaternion.identity);
+
+                print("direction");
+                if (direction.x > 0)
+                {
+                    instanceFootprint.transform.eulerAngles = Vector3.forward * -90;
+                }
+                else if (direction.x < 0)
+                {
+                    instanceFootprint.transform.eulerAngles = Vector3.forward * 90;
+                }
+                else if (direction.y > 0)
+                {
+                    instanceFootprint.transform.rotation.SetLookRotation(Vector3.up);
+                }
+                else if (direction.y < 0)
+                {
+                    instanceFootprint.transform.eulerAngles = Vector3.forward * 180;
+                }
+                
+                canPutFootprint = false;
+            }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Footprint")
+        {
+            // Destroy(collision.gameObject);
         }
     }
 

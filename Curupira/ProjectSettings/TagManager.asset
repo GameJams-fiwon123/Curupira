@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pathing
   - Enemy
+  - Footprint
   layers:
   - Default
   - TransparentFX

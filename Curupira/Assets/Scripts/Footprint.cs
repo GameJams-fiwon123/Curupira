@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class Footprint : MonoBehaviour
 {
-    Vector2 direction = Vector2.zero;
+    Vector3 nextPosition = Vector3.zero;
 
-    public Vector2 Direction
+    public Vector3 NextPosition
     {
         get
         {
-            return direction;
+            return nextPosition;
+        }
+
+        set
+        {
+            nextPosition = value;
         }
     }
 

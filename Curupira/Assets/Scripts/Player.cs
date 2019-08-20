@@ -14,6 +14,8 @@ public class Player : MonoBehaviour
     private Vector3 savePosition;
     private Vector3 newPosition = Vector3.zero;
 
+    private Vector2 lastMotion = Vector3.zero;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -113,8 +115,18 @@ public class Player : MonoBehaviour
                 direction = direction.normalized;
 
                 GameObject instanceFootprint = Instantiate(footprintPrefab, transform.position, Quaternion.identity);
+                instanceFootprint.GetComponent<Footprint>().NextPosition = transform.position - direction;
 
-                print("direction");
+                if (direction.x != lastMotion.x || direction.y != lastMotion.y)
+                {
+                    Vector3 aux = direction;
+                    direction = lastMotion;
+                    lastMotion = aux;
+                } else
+                {
+                    lastMotion = direction;
+                }
+
                 if (direction.x > 0)
                 {
                     instanceFootprint.transform.eulerAngles = Vector3.forward * -90;
@@ -131,17 +143,9 @@ public class Player : MonoBehaviour
                 {
                     instanceFootprint.transform.eulerAngles = Vector3.forward * 180;
                 }
-                
+
                 canPutFootprint = false;
             }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Footprint")
-        {
-            // Destroy(collision.gameObject);
         }
     }
 
@@ -157,15 +161,5 @@ public class Player : MonoBehaviour
         {
             GameManager.instance.GameOver();
         }
-    }
-
-    IEnumerator Walk(Vector3 newPosition)
-    {
-        
-
-        while (transform.position != newPosition)
-            yield return new WaitForSeconds(0);
-
-        rb.velocity = Vector2.zero;
     }
 }

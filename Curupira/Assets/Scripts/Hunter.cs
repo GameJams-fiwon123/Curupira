@@ -10,13 +10,13 @@ public class Hunter : MonoBehaviour
     [SerializeField] float speed = 100;
 
     private Rigidbody2D rb2D;
-    private Vector2 motion = new Vector2();
+    private Vector3 motion = Vector3.zero;
 
     [Header("Settings Path")]
     [SerializeField] Transform paths = null;
-    [SerializeField] float diff = 0.1f;
+
     int index = -1;
-    private Transform currentPath;
+    private Vector3 currentPathPosition;
 
     public float floatHeight;     // Desired floating height.
     public float liftForce;       // Force to apply when lifting the rigidbody.
@@ -44,7 +44,7 @@ public class Hunter : MonoBehaviour
             index = 0;
         }
 
-        currentPath = paths.GetChild(index);
+        currentPathPosition = paths.GetChild(index).position;
 
     }
 
@@ -59,11 +59,15 @@ public class Hunter : MonoBehaviour
     {
         if (!follow)
         {
-            motion = currentPath.position - transform.position;
+            motion = currentPathPosition - transform.position;
+            motion = motion.normalized;
 
-            float distance = Vector2.Distance(transform.position, currentPath.position);
+            motion.x = motion.x / 50;
+            motion.y = motion.y / 50;
 
-            if (distance <= diff)
+            transform.position = transform.position + motion;
+
+            if (transform.position == currentPathPosition)
             {
                 SearchNextPath();
             }
@@ -74,8 +78,6 @@ public class Hunter : MonoBehaviour
         }
 
         
-
-        rb2D.velocity = motion.normalized * speed * Time.deltaTime;
     }
 
     void See()
@@ -104,4 +106,13 @@ public class Hunter : MonoBehaviour
         }
     }
 
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Footprint")
+        {
+            currentPathPosition = collision.GetComponent<Footprint>().NextPosition;
+        }
+    }
 }

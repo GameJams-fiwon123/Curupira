@@ -66,8 +66,9 @@ public class Hunter : MonoBehaviour
             motion.y = motion.y / 50;
 
             transform.position = transform.position + motion;
+            float distance = Vector3.Distance(transform.position, currentPathPosition);
 
-            if (transform.position == currentPathPosition)
+            if (distance < 0.1f)
             {
                 SearchNextPath();
             }
@@ -75,6 +76,11 @@ public class Hunter : MonoBehaviour
         else
         {
             motion = follow.position - transform.position;
+            motion = motion.normalized;
+            motion.x = motion.x / 35;
+            motion.y = motion.y / 35;
+
+            transform.position = transform.position + motion;
         }
 
         

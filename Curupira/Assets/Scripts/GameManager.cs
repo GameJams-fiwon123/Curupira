@@ -21,12 +21,12 @@ public class GameManager : MonoBehaviour
 
    public void GameOver()
     {
-
+        FindObjectOfType<LevelManager>().LoadGameOver();
     }
 
     public void Win()
     {
-
+        FindObjectOfType<LevelManager>().LoadNextLevel();
     }
         
 }

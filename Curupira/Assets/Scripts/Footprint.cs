@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Footprint : MonoBehaviour
 {
+    [SerializeField]
     Vector3 nextPosition = Vector3.zero;
 
     public Vector3 NextPosition
@@ -18,6 +19,7 @@ public class Footprint : MonoBehaviour
             nextPosition = value;
         }
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

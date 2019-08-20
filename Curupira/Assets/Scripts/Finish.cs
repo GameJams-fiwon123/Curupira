@@ -11,6 +11,7 @@ public class Finish : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
+            Destroy(collision.gameObject);
             countEnemies--;
 
             if (countEnemies <= 0)

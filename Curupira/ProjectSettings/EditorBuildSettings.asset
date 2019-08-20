@@ -12,9 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Tutorial.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/Credits.unity
+    path: Assets/Scenes/Win.unity
     guid: a39c3739045ad9b4d800ec5ea7fd946d
   - enabled: 1
     path: Assets/Scenes/Game Over.unity
     guid: 41bb2f929ca36da4697c97d9ffa4ada8
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 9f2a27c44d0efe14c87e5e8837314d84
   m_configObjects: {}

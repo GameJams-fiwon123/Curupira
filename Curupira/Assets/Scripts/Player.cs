@@ -6,7 +6,9 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private GameObject footprintPrefab = null;
-    private bool canPutFootprint = true; 
+    private bool canPutFootprint = true;
+    private bool canDestroyFootprint = false;
+    private GameObject lastFootprint;
 
     private Rigidbody2D rb = null;
     private List<Vector2> motions = new List<Vector2>();
@@ -14,7 +16,8 @@ public class Player : MonoBehaviour
     private Vector3 savePosition;
     private Vector3 newPosition = Vector3.zero;
 
-    private Vector2 lastMotion = Vector3.zero;
+    private Vector2 lastMotion = Vector2.zero;
+    private Vector3 aux;
 
     // Start is called before the first frame update
     void Awake()
@@ -115,15 +118,16 @@ public class Player : MonoBehaviour
                 direction = direction.normalized;
 
                 GameObject instanceFootprint = Instantiate(footprintPrefab, transform.position, Quaternion.identity);
-                
 
-                if (direction.x != lastMotion.x || direction.y != lastMotion.y)
+                if ((direction.x != lastMotion.x || direction.y != lastMotion.y) && lastMotion != Vector2.zero)
                 {
-                    Vector3 aux = direction;
+                    aux = direction;
                     direction = lastMotion;
                     lastMotion = aux;
-                } else
+                }
+                else
                 {
+                    //aux = lastMotion;
                     lastMotion = direction;
                 }
 
@@ -151,6 +155,7 @@ public class Player : MonoBehaviour
         }
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.tag != "Enemy")
@@ -158,6 +163,8 @@ public class Player : MonoBehaviour
             transform.position = savePosition;
             motions.RemoveAt(0);
             newPosition = Vector3.zero;
+            canPutFootprint = true;
+           // lastMotion = aux;
         }
         else
         {

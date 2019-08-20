@@ -10,6 +10,8 @@ public class Hunter : MonoBehaviour
     [SerializeField] float speed = 100;
 
     private Rigidbody2D rb2D;
+    private Animator anim;
+    private SpriteRenderer spr;
     private Vector3 motion = Vector3.zero;
 
     [Header("Settings Path")]
@@ -27,6 +29,8 @@ public class Hunter : MonoBehaviour
     void Awake()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
 
@@ -62,6 +66,8 @@ public class Hunter : MonoBehaviour
             motion = currentPathPosition - transform.position;
             motion = motion.normalized;
 
+            
+
             motion.x = motion.x / 50;
             motion.y = motion.y / 50;
 
@@ -83,7 +89,35 @@ public class Hunter : MonoBehaviour
             transform.position = transform.position + motion;
         }
 
-        
+        anim.SetInteger("Horizontal", 0);
+        anim.SetInteger("Vertical", 0);
+
+        if (Mathf.Abs(motion.x) > Mathf.Abs(motion.y))
+        {
+            if (motion.x > 0)
+            {
+                spr.flipX = false;
+                anim.SetInteger("Horizontal", 1);
+            }
+            else if (motion.x < 0)
+            {
+                spr.flipX = true;
+                anim.SetInteger("Horizontal", -1);
+            }
+        }
+        else
+        {
+            if (motion.y > 0)
+            {
+                anim.SetInteger("Vertical", 1);
+            }
+            else if (motion.y < 0)
+            {
+                anim.SetInteger("Vertical", -1);
+            }
+        }
+
+
     }
 
     void See()

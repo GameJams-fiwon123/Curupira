@@ -115,7 +115,7 @@ public class Player : MonoBehaviour
                 direction = direction.normalized;
 
                 GameObject instanceFootprint = Instantiate(footprintPrefab, transform.position, Quaternion.identity);
-                instanceFootprint.GetComponent<Footprint>().NextPosition = transform.position - direction;
+                
 
                 if (direction.x != lastMotion.x || direction.y != lastMotion.y)
                 {
@@ -126,6 +126,8 @@ public class Player : MonoBehaviour
                 {
                     lastMotion = direction;
                 }
+
+                instanceFootprint.GetComponent<Footprint>().NextPosition = transform.position - direction;
 
                 if (direction.x > 0)
                 {

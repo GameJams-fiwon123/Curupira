@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
     private GameObject lastFootprint;
 
     private Rigidbody2D rb = null;
+    private Animator anim = null;
+    private SpriteRenderer spr = null;
     private List<Vector2> motions = new List<Vector2>();
 
     private Vector3 savePosition;
@@ -23,6 +25,8 @@ public class Player : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        spr = GetComponent<SpriteRenderer>();
     }
 
     private void Start()
@@ -40,29 +44,33 @@ public class Player : MonoBehaviour
     private void Inputs()
     {
         Vector2 motion = Vector2.zero;
+        anim.SetInteger("Horizontal", 0);
+        anim.SetInteger("Vertical", 0);
 
         if (Input.GetButtonDown("left"))
         {
+            spr.flipX = true;
+            anim.SetInteger("Horizontal", -1);
             motion.x = -1;
         }
         else if (Input.GetButtonDown("right"))
         {
+            spr.flipX = false;
+            anim.SetInteger("Horizontal", 1);
             motion.x = 1;
         }
         else if (Input.GetButtonDown("up"))
         {
+            anim.SetInteger("Vertical", 1);
             motion.y = 1;
         }
         else if (Input.GetButtonDown("down"))
         {
+            anim.SetInteger("Vertical", -1);
             motion.y = -1;
         }
 
-        if (motion.x != 0)
-        {
-            motions.Add(motion);
-        }
-        else if (motion.y != 0)
+        if (motion.x != 0 || motion.y != 0) 
         {
             motions.Add(motion);
         }

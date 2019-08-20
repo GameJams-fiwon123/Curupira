@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Footprint
   - Grass
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Grass
   - Footprint
   - Pathing
-  - 
+  - Bullet
   - 
   - 
   - 

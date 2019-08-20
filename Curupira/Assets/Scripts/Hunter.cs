@@ -120,5 +120,13 @@ public class Hunter : MonoBehaviour
         {
             currentPathPosition = collision.GetComponent<Footprint>().NextPosition;
         }
+        if (collision.tag == "Pathing")
+        {
+            if (paths.gameObject != collision.gameObject)
+            {
+                paths = collision.gameObject.transform;
+                index = 0;
+            }
+        }
     }
 }

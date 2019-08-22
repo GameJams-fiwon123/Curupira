@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
     private Vector3 savePosition;
     private Vector3 newPosition = Vector3.zero;
 
-    private Vector2 lastMotion = Vector2.zero;
+    private Vector3 lastMotion = Vector3.down;
     private Vector3 aux;
 
     // Start is called before the first frame update
@@ -89,11 +89,24 @@ public class Player : MonoBehaviour
     {
         if (motions.Count > 0 && newPosition == Vector3.zero)
         {
-            savePosition = transform.position;
 
-            newPosition = transform.position;
-            newPosition.x += motions[0].x;
-            newPosition.y += motions[0].y;
+            if (lastMotion.x == motions[0].x && lastMotion.y == motions[0].y)
+            {
+                savePosition = transform.position;
+
+                newPosition = transform.position;
+                newPosition.x += motions[0].x;
+                newPosition.y += motions[0].y;
+                lastMotion = motions[0];
+            }
+            else
+            {
+                print(motions.Count );
+                lastMotion = motions[0];
+                motions.RemoveAt(0);
+            }
+
+            
         }
     }
 
@@ -118,26 +131,27 @@ public class Player : MonoBehaviour
 
     private void PutFootprint()
     {
-        if (canPutFootprint)
+        if(Input.GetKeyDown(KeyCode.X))
+       // if (canPutFootprint)
         {
-            if (newPosition != Vector3.zero)
-            {
-                Vector3 direction = newPosition - transform.position;
+            //if (newPosition != Vector3.zero)
+           // {
+                Vector3 direction = lastMotion+transform.position - transform.position;
                 direction = direction.normalized;
 
                 GameObject instanceFootprint = Instantiate(footprintPrefab, transform.position, Quaternion.identity);
 
-                if ((direction.x != lastMotion.x || direction.y != lastMotion.y) && lastMotion != Vector2.zero)
-                {
-                    aux = direction;
-                    direction = lastMotion;
-                    lastMotion = aux;
-                }
-                else
-                {
-                    //aux = lastMotion;
-                    lastMotion = direction;
-                }
+                //if ((direction.x != lastMotion.x || direction.y != lastMotion.y) && lastMotion != Vector2.zero)
+                //{
+                //    aux = direction;
+                //    direction = lastMotion;
+                //    lastMotion = aux;
+                //}
+                //else
+                //{
+                //    //aux = lastMotion;
+                //    lastMotion = direction;
+                //}
 
                 instanceFootprint.GetComponent<Footprint>().NextPosition = transform.position - direction;
 
@@ -159,7 +173,7 @@ public class Player : MonoBehaviour
                 }
 
                 canPutFootprint = false;
-            }
+          //  }
         }
     }
 

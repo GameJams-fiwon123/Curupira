@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     Button[] options;
 
-    private int index = 2;
+    private int index = 3;
 
     // Update is called once per frame
     void Update()
@@ -43,6 +43,9 @@ public class MainMenu : MonoBehaviour
                     FindObjectOfType<LevelManager>().LoadCredits();
                     break;
                 case 2:
+                    FindObjectOfType<LevelManager>().LoadInstruction();
+                    break;
+                case 3:
                     FindObjectOfType<LevelManager>().ExitGame();
                     break;
             }

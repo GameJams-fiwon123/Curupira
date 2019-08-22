@@ -4,15 +4,29 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] float speed = 100f;
+
+    Rigidbody2D rb2D = null;
+
+    Vector3 direction = Vector3.zero;
+
+    private void Awake()
     {
-        
+        rb2D = GetComponent<Rigidbody2D>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        rb2D.velocity = direction * speed * Time.deltaTime;
+    }
+
+    public void SetDirection(Vector3 dir)
+    {
+        direction = dir;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Destroy(gameObject);
     }
 }

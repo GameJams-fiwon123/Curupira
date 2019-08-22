@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        FindObjectOfType<LevelManager>().LoadGameOver();
+        FindObjectOfType<LevelManager>().LoadAgain();
     }
 
     public void Win()

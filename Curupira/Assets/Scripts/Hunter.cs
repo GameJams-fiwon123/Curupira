@@ -6,6 +6,8 @@ public class Hunter : MonoBehaviour
 {
     [SerializeField] Transform follow = null;
 
+    [SerializeField] GameObject prefabBullet = null;
+
     [Header("Settings Hunter")]
     [SerializeField] float speed = 100;
 
@@ -23,6 +25,8 @@ public class Hunter : MonoBehaviour
     public float floatHeight;     // Desired floating height.
     public float liftForce;       // Force to apply when lifting the rigidbody.
     public float damping;         // Force reduction proportional to speed (reduces bouncing).
+
+    Coroutine firing = null;
 
 
     // Start is called before the first frame update
@@ -42,7 +46,7 @@ public class Hunter : MonoBehaviour
     void SearchNextPath()
     {
         index++;
-
+        print(index);
         if (index == paths.childCount)
         {
             index = 0;
@@ -131,21 +135,65 @@ public class Hunter : MonoBehaviour
         // If it hits something...
         if (hit.collider != null)
         {
-            
             // Calculate the distance from the surface and the "error" relative
             // to the floating height.
             float distance = Mathf.Abs(hit.point.y - transform.position.y);
             Debug.DrawRay(transform.position, motion * hit.distance, Color.yellow);
 
-            if(hit.collider.name == "Player")
+            if (hit.collider.name == "Player")
+            {
                 follow = hit.collider.transform;
+                if (firing == null)
+                {
+                    firing = StartCoroutine(StartFire());
+                }
+                
+            }
             else
             {
+                StopCoroutine(firing);
+                firing = null;
                 follow = null;
             }
         }
     }
 
+    IEnumerator StartFire()
+    {
+        while (true)
+        {
+            GameObject instance = Instantiate(prefabBullet, transform.position, Quaternion.identity);
+            if (Mathf.Abs(motion.x) > Mathf.Abs(motion.y))
+            {
+                if (motion.x > 0)
+                {
+                    instance.GetComponent<Bullet>().SetDirection(Vector3.right);
+                }
+                else
+                {
+                    instance.GetComponent<Bullet>().SetDirection(Vector3.left);
+                }
+                
+            }
+            else
+            {
+                if (motion.y > 0)
+                {
+                    instance.GetComponent<Bullet>().SetDirection(Vector3.up);
+                }
+                else
+                {
+                    instance.GetComponent<Bullet>().SetDirection(Vector3.down);
+                }
+            }
+
+            
+
+            yield return new WaitForSeconds(1f);
+        }
+
+
+    }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -153,13 +201,15 @@ public class Hunter : MonoBehaviour
         if (collision.tag == "Footprint")
         {
             currentPathPosition = collision.GetComponent<Footprint>().NextPosition;
+            Destroy(collision.gameObject);
         }
         if (collision.tag == "Pathing")
         {
             if (paths.gameObject != collision.gameObject)
             {
                 paths = collision.gameObject.transform;
-                index = 0;
+                index = -1;
+                SearchNextPath();
             }
         }
     }

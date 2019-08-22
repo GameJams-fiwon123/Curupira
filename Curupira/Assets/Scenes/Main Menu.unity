@@ -424,7 +424,7 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 434f046273fa6ff45b968399fa74c0d2,
+    m_HighlightedSprite: {fileID: 21300000, guid: 930f0fcb3bca85243b3fd453ea7eedd4,
       type: 3}
     m_PressedSprite: {fileID: 21300000, guid: 930f0fcb3bca85243b3fd453ea7eedd4, type: 3}
     m_SelectedSprite: {fileID: 21300000, guid: 930f0fcb3bca85243b3fd453ea7eedd4, type: 3}
@@ -640,6 +640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canal3: {fileID: 1417056719}
+  instance: {fileID: 0}
 --- !u!1 &1107997837
 GameObject:
   m_ObjectHideFlags: 0

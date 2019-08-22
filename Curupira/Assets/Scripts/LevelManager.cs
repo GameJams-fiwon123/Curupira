@@ -20,12 +20,6 @@ public class LevelManager : MonoBehaviour
         SceneManager.LoadScene("Credits");
     }
 
-    public void LoadGameOver()
-    {
-        SceneManager.LoadScene("Game Over");
-    }
-
-
     public void ExitGame()
     {
         Application.Quit();

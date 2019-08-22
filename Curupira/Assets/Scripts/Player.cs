@@ -193,4 +193,12 @@ public class Player : MonoBehaviour
             GameManager.instance.GameOver();
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Bullet")
+        {
+            GameManager.instance.GameOver();
+        }
+    }
 }

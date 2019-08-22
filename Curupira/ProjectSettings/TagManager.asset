@@ -10,6 +10,7 @@ TagManager:
   - Grass
   - Bullet
   - Jaguar
+  - Ararajuba
   layers:
   - Default
   - TransparentFX

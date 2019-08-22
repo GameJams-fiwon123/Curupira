@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Assobio : MonoBehaviour
 {
-
+    private AudioSource aud;
     private Animator anim;
     private bool canUse = true;
 
@@ -12,6 +12,7 @@ public class Assobio : MonoBehaviour
     void Awake()
     {
         anim = GetComponent<Animator>();
+        aud = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -20,6 +21,7 @@ public class Assobio : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Z) && canUse)
         {
             anim.SetBool("canUse", true);
+            aud.Play();
             canUse = false;
         }
     } 

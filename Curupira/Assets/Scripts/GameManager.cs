@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-   public void GameOver()
+    public void GameOver()
     {
         FindObjectOfType<LevelManager>().LoadGameOver();
     }

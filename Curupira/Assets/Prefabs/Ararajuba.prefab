@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 8278895463616835100}
   - component: {fileID: 8278895463616835099}
   - component: {fileID: 8278895463616835098}
-  m_Layer: 0
+  m_Layer: 18
   m_Name: Ararajuba
-  m_TagString: Untagged
+  m_TagString: Ararajuba
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

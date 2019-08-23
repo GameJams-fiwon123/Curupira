@@ -23,6 +23,30 @@ public class Bullet : MonoBehaviour
     public void SetDirection(Vector3 dir)
     {
         direction = dir;
+
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0)
+            {
+                transform.eulerAngles = Vector3.forward;
+            }
+            else
+            {
+                transform.eulerAngles = Vector3.forward * 180;
+            }
+
+        }
+        else
+        {
+            if (direction.y > 0)
+            {
+                transform.eulerAngles = Vector3.forward * -90;
+            }
+            else
+            {
+                transform.eulerAngles = Vector3.forward * 90;
+            }
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

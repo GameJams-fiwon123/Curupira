@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8630039812176632589}
   - component: {fileID: 8630039812176632588}
   - component: {fileID: -6346996037816946111}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: Jaguar
-  m_TagString: Untagged
+  m_TagString: Jaguar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

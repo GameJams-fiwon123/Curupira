@@ -55,7 +55,8 @@ public class Hunter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Move();
+        if (firing == null)
+            Move();
         See();
     }
 
@@ -123,41 +124,109 @@ public class Hunter : MonoBehaviour
     void See()
     {
         // Bit shift the index of the layer (10) and layer (11) to get a bit mask
-        int layerMask = (1 << 10) | (1 << 11);
+        int layerMask = (1 << 10) | (1 << 11) | (1 << 17) | (1 << 18);
 
         // Cast a ray straight down.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, motion, 2,layerMask, 0, 0);
+        RaycastHit2D[] hits = new RaycastHit2D[3];
+        Vector2 dir = Vector2.zero;
 
-        // If it hits something...
-        if (hit.collider != null)
-        {
-            // Calculate the distance from the surface and the "error" relative
-            // to the floating height.
-            float distance = Vector2.Distance(hit.point, transform.position);
-            Debug.DrawRay(transform.position, motion * 100, Color.yellow);
-
-            if (hit.collider.name == "Player")
+        if (Mathf.Abs(motion.x) > Mathf.Abs(motion.y)) {
+            if (motion.x > 0)
             {
-                follow = hit.collider.transform;
-                if (firing == null)
-                {
-                    firing = StartCoroutine(StartFire());
-                }
-                
+                dir.x = 1;
+                hits[0] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
             }
             else
             {
-                if (firing != null)
+                dir.x = -1;
+                hits[0] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
+            }
+
+            dir.y = 0.5f;
+            hits[1] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
+
+            dir.y = -0.5f;
+            hits[2] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
+        }
+        else {
+            if (motion.y > 0)
+            {
+                dir.y = 1;
+                hits[0] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
+            }
+            else
+            {
+                dir.y = -1;
+                hits[0] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
+            }
+
+            dir.x = 0.5f;
+            hits[1] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
+
+            dir.x = -0.5f;
+            hits[2] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
+        }
+
+        bool isCatch = false;
+
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].collider != null)
+            {
+                // Calculate the distance from the surface and the "error" relative
+                // to the floating height.
+                float distance = Vector2.Distance(hits[i].point, transform.position);
+                Debug.DrawRay(transform.position, motion * 100, Color.yellow);
+
+                if (hits[i].collider.name == "Player" || hits[i].collider.name == "Jaguar" || hits[i].collider.name == "Ararajuba")
                 {
-                    StopCoroutine(firing);
-                    firing = null;
+                    isCatch = true;
+                    follow = hits[i].collider.transform;
+                    //if (firing == null)
+                    //{
+                    //    firing = StartCoroutine(StartFire());
+                    //}
+
                 }
-                follow = null;
+                else
+                {
+                    //if (!isCatch)
+                    //{
+                    //    if (firing != null)
+                    //    {
+                    //        StopCoroutine(firing);
+                    //        firing = null;
+                    //    }
+                    //    follow = null;
+                    //}
+                }
+            }
+            else
+            {
+                //if (!isCatch)
+                //{
+                //    Debug.DrawRay(transform.position, hits[i].point * 100, Color.white);
+                //    if (firing != null)
+                //    {
+                //        StopCoroutine(firing);
+                //        firing = null;
+                //    }
+                //    follow = null;
+                //}
+            }
+
+           
+        }
+
+        if (isCatch)
+        {
+            if (firing == null)
+            {
+                firing = StartCoroutine(StartFire());
             }
         }
         else
         {
-            Debug.DrawRay(transform.position, motion * 100, Color.white);
             if (firing != null)
             {
                 StopCoroutine(firing);
@@ -172,31 +241,9 @@ public class Hunter : MonoBehaviour
         while (true)
         {
             GameObject instance = Instantiate(prefabBullet, transform.position, Quaternion.identity);
-            if (Mathf.Abs(motion.x) > Mathf.Abs(motion.y))
-            {
-                if (motion.x > 0)
-                {
-                    instance.GetComponent<Bullet>().SetDirection(Vector3.right);
-                }
-                else
-                {
-                    instance.GetComponent<Bullet>().SetDirection(Vector3.left);
-                }
-                
-            }
-            else
-            {
-                if (motion.y > 0)
-                {
-                    instance.GetComponent<Bullet>().SetDirection(Vector3.up);
-                }
-                else
-                {
-                    instance.GetComponent<Bullet>().SetDirection(Vector3.down);
-                }
-            }
 
-            
+            Vector2 dir = follow.position - transform.position;
+            instance.GetComponent<Bullet>().SetDirection(dir);
 
             yield return new WaitForSeconds(1f);
         }

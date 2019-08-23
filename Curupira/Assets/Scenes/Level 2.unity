@@ -1040,6 +1040,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Grid
       objectReference: {fileID: 0}
+    - target: {fileID: 4444402878383033364, guid: 45253e700b2eecd4d8ffea2bb666db70,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4444402878607174853, guid: 45253e700b2eecd4d8ffea2bb666db70,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6101,11 +6106,6 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4444402876984190069, guid: 45253e700b2eecd4d8ffea2bb666db70,
-        type: 3}
-      propertyPath: m_UsedByComposite
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4444402878383033368, guid: 45253e700b2eecd4d8ffea2bb666db70,
         type: 3}
       propertyPath: m_TagString
@@ -6116,27 +6116,12 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 12
       objectReference: {fileID: 0}
-    - target: {fileID: 4444402878383033364, guid: 45253e700b2eecd4d8ffea2bb666db70,
+    - target: {fileID: 4444402876984190069, guid: 45253e700b2eecd4d8ffea2bb666db70,
         type: 3}
       propertyPath: m_UsedByComposite
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4444402876984190068, guid: 45253e700b2eecd4d8ffea2bb666db70,
-        type: 3}
-      propertyPath: m_Simulated
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444402878383033362, guid: 45253e700b2eecd4d8ffea2bb666db70,
-        type: 3}
-      propertyPath: m_BodyType
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444402878383033362, guid: 45253e700b2eecd4d8ffea2bb666db70,
-        type: 3}
-      propertyPath: m_GravityScale
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444402878383033362, guid: 45253e700b2eecd4d8ffea2bb666db70,
         type: 3}
       propertyPath: m_Simulated
       value: 1
@@ -7106,6 +7091,21 @@ PrefabInstance:
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
       value: 29
       objectReference: {fileID: 0}
+    - target: {fileID: 4444402878383033362, guid: 45253e700b2eecd4d8ffea2bb666db70,
+        type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444402878383033362, guid: 45253e700b2eecd4d8ffea2bb666db70,
+        type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444402878383033362, guid: 45253e700b2eecd4d8ffea2bb666db70,
+        type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45253e700b2eecd4d8ffea2bb666db70, type: 3}
 --- !u!1001 &4804243760089467986
@@ -7266,21 +7266,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 6107884957227344457, guid: e135fe6f28ede8949a666d3433f71b76,
         type: 3}
-    - target: {fileID: 6193355553696864456, guid: ba638b411dde7f942bd637fe8b584760,
-        type: 3}
-      propertyPath: m_Offset.x
-      value: 0.00031280518
-      objectReference: {fileID: 0}
-    - target: {fileID: 6193355553696864456, guid: ba638b411dde7f942bd637fe8b584760,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.35872364
-      objectReference: {fileID: 0}
-    - target: {fileID: 6193355553696864456, guid: ba638b411dde7f942bd637fe8b584760,
-        type: 3}
-      propertyPath: m_Offset.y
-      value: -0.032008827
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba638b411dde7f942bd637fe8b584760, type: 3}
 --- !u!1001 &7433495955495154718

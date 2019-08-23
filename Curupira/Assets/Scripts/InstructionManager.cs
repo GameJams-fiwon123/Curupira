@@ -24,16 +24,15 @@ public class InstructionManager : MonoBehaviour
 
     bool isNext = true;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            FindObjectOfType<LevelManager>().LoadMainMenu();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Z) || Input.GetKeyDown(KeyCode.Return))
         {
             if (isNext)
             {
@@ -69,7 +68,8 @@ public class InstructionManager : MonoBehaviour
 
             img.sprite = rules[index];
         }
-        if (Input.GetKeyDown(KeyCode.RightArrow)){
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
             isNext = true;
             txtButtonNext.color = colorSelect;
             txtButtonPrevious.color = colorUnselect;

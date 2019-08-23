@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hunter : MonoBehaviour
 {
-    [SerializeField] Transform follow = null;
+    [SerializeField] Transform target = null;
 
     [SerializeField] GameObject prefabBullet = null;
 
@@ -19,8 +19,14 @@ public class Hunter : MonoBehaviour
     int index = -1;
     private Vector3 currentPathPosition;
 
-    Coroutine firing = null;
+    private List<Vector3> footprintPositions = new List<Vector3>();
 
+    Coroutine firing = null;
+    private bool isCatch = false;
+
+
+    private float rateTimeCollison = 0.5f;
+    private float waitTimeCollision = 0f;
 
     // Start is called before the first frame update
     void Awake()
@@ -53,42 +59,57 @@ public class Hunter : MonoBehaviour
     {
         if (!GameManager.instance.IsPaused())
         {
+            if (waitTimeCollision < rateTimeCollison)
+                waitTimeCollision += Time.deltaTime;
+
             if (firing == null)
+            {
                 Move();
+                ProcessAnimation();
+            }
+
             See();
+            Fire();
         }
     }
 
     void Move()
     {
-        if (!follow)
+        Vector3 currentPosition = Vector3.zero;
+
+        if (footprintPositions.Count > 0)
         {
-            motion = currentPathPosition - transform.position;
-            motion = motion.normalized;
+            currentPosition = footprintPositions[0];
 
-            
-
-            motion.x = motion.x / 50;
-            motion.y = motion.y / 50;
-
-            transform.position = transform.position + motion;
-            float distance = Vector3.Distance(transform.position, currentPathPosition);
-
-            if (distance < 0.1f)
-            {
-                SearchNextPath();
-            }
         }
         else
         {
-            motion = follow.position - transform.position;
-            motion = motion.normalized;
-            motion.x = motion.x / 35;
-            motion.y = motion.y / 35;
-
-            transform.position = transform.position + motion;
+            currentPosition = currentPathPosition;
         }
 
+        motion = currentPosition - transform.position;
+        motion = motion.normalized;
+
+        motion.x = motion.x / 50;
+        motion.y = motion.y / 50;
+
+        transform.position = transform.position + motion;
+        float distance = Vector3.Distance(transform.position, currentPosition);
+
+        if (distance < 0.1f)
+        {
+            if (footprintPositions.Count > 0)
+            {
+                footprintPositions.RemoveAt(0);
+            }
+
+            transform.position = currentPosition;
+            SearchNextPath();
+        }
+    }
+
+    private void ProcessAnimation()
+    {
         anim.SetInteger("Horizontal", 0);
         anim.SetInteger("Vertical", 0);
 
@@ -116,9 +137,8 @@ public class Hunter : MonoBehaviour
                 anim.SetInteger("Vertical", -1);
             }
         }
-
-
     }
+
 
     void See()
     {
@@ -134,7 +154,7 @@ public class Hunter : MonoBehaviour
         hits[2] = Physics2D.Raycast(transform.position, Vector2.down, 2,layerMask, 0, 0);
         hits[3] = Physics2D.Raycast(transform.position, Vector2.left, 2,layerMask, 0, 0);
 
-        bool isCatch = false;
+        isCatch = false;
 
         for (int i = 0; i < hits.Length; i++)
         {
@@ -148,11 +168,14 @@ public class Hunter : MonoBehaviour
                 if (hits[i].collider.tag == "Player" || hits[i].collider.tag == "Jaguar" || hits[i].collider.tag == "Ararajuba")
                 {
                     isCatch = true;
-                    follow = hits[i].collider.transform;
+                    target = hits[i].collider.transform;
                 }
             } 
         }
+    }
 
+    void Fire()
+    {
         if (isCatch)
         {
             if (firing == null)
@@ -167,7 +190,7 @@ public class Hunter : MonoBehaviour
                 StopCoroutine(firing);
                 firing = null;
             }
-            follow = null;
+            target = null;
         }
     }
 
@@ -177,7 +200,7 @@ public class Hunter : MonoBehaviour
         {
             GameObject instance = Instantiate(prefabBullet, transform.position, Quaternion.identity);
 
-            Vector2 dir = follow.position - transform.position;
+            Vector2 dir = target.position - transform.position;
             instance.GetComponent<Bullet>().SetDirection(dir);
 
             yield return new WaitForSeconds(1f);
@@ -191,17 +214,28 @@ public class Hunter : MonoBehaviour
     {
         if (collision.tag == "Footprint")
         {
-            currentPathPosition = collision.GetComponent<Footprint>().NextPosition;
+            footprintPositions.Add(collision.transform.position);
+            footprintPositions.Add(collision.GetComponent<Footprint>().NextPosition);
             Destroy(collision.gameObject);
         }
-        if (collision.tag == "Pathing")
+        else if (collision.tag == "Pathing")
         {
             if (paths.gameObject != collision.gameObject)
             {
                 paths = collision.gameObject.transform;
                 index = -1;
-                SearchNextPath();
             }
+        }
+        
+    }
+
+
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (waitTimeCollision > rateTimeCollison)
+        {
+            SearchNextPath();
+            waitTimeCollision = 0f;
         }
     }
 }

@@ -114,8 +114,8 @@ public class Player : MonoBehaviour
         if (newPosition != Vector3.zero)
         {
             Vector3 motion = Vector3.zero;
-            motion.x = motions[0].x / 10;
-            motion.y = motions[0].y / 10;
+            motion.x = motions[0].x / 5;
+            motion.y = motions[0].y / 5;
 
             transform.position = transform.position + motion;
 

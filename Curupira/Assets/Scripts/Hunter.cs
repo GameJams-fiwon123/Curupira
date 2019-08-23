@@ -123,45 +123,13 @@ public class Hunter : MonoBehaviour
         int layerMask = (1 << 10) | (1 << 11) | (1 << 17) | (1 << 18);
 
         // Cast a ray straight down.
-        RaycastHit2D[] hits = new RaycastHit2D[3];
+        RaycastHit2D[] hits = new RaycastHit2D[4];
         Vector2 dir = Vector2.zero;
 
-        if (Mathf.Abs(motion.x) > Mathf.Abs(motion.y)) {
-            if (motion.x > 0)
-            {
-                dir.x = 1;
-                hits[0] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
-            }
-            else
-            {
-                dir.x = -1;
-                hits[0] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
-            }
-
-            dir.y = 0.5f;
-            hits[1] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
-
-            dir.y = -0.5f;
-            hits[2] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
-        }
-        else {
-            if (motion.y > 0)
-            {
-                dir.y = 1;
-                hits[0] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
-            }
-            else
-            {
-                dir.y = -1;
-                hits[0] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
-            }
-
-            dir.x = 0.5f;
-            hits[1] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
-
-            dir.x = -0.5f;
-            hits[2] = Physics2D.Raycast(transform.position, dir, 2, layerMask, 0, 0);
-        }
+        hits[0] = Physics2D.Raycast(transform.position, Vector2.up, 2, layerMask, 0, 0);
+        hits[1] = Physics2D.Raycast(transform.position, Vector2.right, 2, layerMask, 0, 0);
+        hits[2] = Physics2D.Raycast(transform.position, Vector2.down, 2,layerMask, 0, 0);
+        hits[3] = Physics2D.Raycast(transform.position, Vector2.left, 2,layerMask, 0, 0);
 
         bool isCatch = false;
 
@@ -178,40 +146,8 @@ public class Hunter : MonoBehaviour
                 {
                     isCatch = true;
                     follow = hits[i].collider.transform;
-                    //if (firing == null)
-                    //{
-                    //    firing = StartCoroutine(StartFire());
-                    //}
-
                 }
-                else
-                {
-                    //if (!isCatch)
-                    //{
-                    //    if (firing != null)
-                    //    {
-                    //        StopCoroutine(firing);
-                    //        firing = null;
-                    //    }
-                    //    follow = null;
-                    //}
-                }
-            }
-            else
-            {
-                //if (!isCatch)
-                //{
-                //    Debug.DrawRay(transform.position, hits[i].point * 100, Color.white);
-                //    if (firing != null)
-                //    {
-                //        StopCoroutine(firing);
-                //        firing = null;
-                //    }
-                //    follow = null;
-                //}
-            }
-
-           
+            } 
         }
 
         if (isCatch)

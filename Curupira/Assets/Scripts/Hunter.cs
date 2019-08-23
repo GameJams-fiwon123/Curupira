@@ -229,11 +229,26 @@ public class Hunter : MonoBehaviour
         
     }
 
+    //private void OnTriggerExit2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Pathing")
+    //    {
+    //        print("oi");
+    //        paths = transform.GetChild(0);
+    //    }
+    //}
+
+
 
     private void OnCollisionStay2D(Collision2D collision)
     {
         if (waitTimeCollision > rateTimeCollison)
         {
+            if (footprintPositions.Count > 0)
+            {
+                footprintPositions.RemoveAt(0);
+            }
+
             SearchNextPath();
             waitTimeCollision = 0f;
         }

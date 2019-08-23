@@ -98,9 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   follow: {fileID: 0}
-  speed: 100
+  prefabBullet: {fileID: 980835535529272518, guid: 64566dd24fda38644bd3c8e9dc6db80b,
+    type: 3}
   paths: {fileID: 0}
-  diff: 0.1
   floatHeight: 0
   liftForce: 0
   damping: 0

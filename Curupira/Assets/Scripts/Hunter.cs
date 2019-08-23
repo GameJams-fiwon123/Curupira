@@ -126,15 +126,15 @@ public class Hunter : MonoBehaviour
         int layerMask = (1 << 10) | (1 << 11);
 
         // Cast a ray straight down.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, motion, 1000, layerMask, 0, 0);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, motion, 2,layerMask, 0, 0);
 
         // If it hits something...
         if (hit.collider != null)
         {
             // Calculate the distance from the surface and the "error" relative
             // to the floating height.
-            float distance = Mathf.Abs(hit.point.y - transform.position.y);
-            Debug.DrawRay(transform.position, motion * hit.distance, Color.yellow);
+            float distance = Vector2.Distance(hit.point, transform.position);
+            Debug.DrawRay(transform.position, motion * 100, Color.yellow);
 
             if (hit.collider.name == "Player")
             {
@@ -154,6 +154,16 @@ public class Hunter : MonoBehaviour
                 }
                 follow = null;
             }
+        }
+        else
+        {
+            Debug.DrawRay(transform.position, motion * 100, Color.white);
+            if (firing != null)
+            {
+                StopCoroutine(firing);
+                firing = null;
+            }
+            follow = null;
         }
     }
 

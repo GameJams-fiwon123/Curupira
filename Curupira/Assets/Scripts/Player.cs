@@ -160,7 +160,8 @@ public class Player : MonoBehaviour
         if (collision.gameObject.tag != "Enemy")
         {
             transform.position = savePosition;
-            motions.RemoveAt(0);
+            if (motions.Count > 0)
+                motions.RemoveAt(0);
             newPosition = Vector3.zero;
         }
         else

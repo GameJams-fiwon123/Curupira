@@ -17,7 +17,14 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        rb2D.velocity = direction * speed * Time.deltaTime;
+        if (!GameManager.instance.IsPaused())
+        {
+            rb2D.velocity = direction.normalized * speed * Time.deltaTime;
+        }
+        else
+        {
+            rb2D.velocity = direction * 0;
+        }
     }
 
     public void SetDirection(Vector3 dir)

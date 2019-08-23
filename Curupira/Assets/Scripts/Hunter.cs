@@ -51,9 +51,12 @@ public class Hunter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (firing == null)
-            Move();
-        See();
+        if (!GameManager.instance.IsPaused())
+        {
+            if (firing == null)
+                Move();
+            See();
+        }
     }
 
     void Move()

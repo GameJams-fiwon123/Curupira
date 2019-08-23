@@ -24,6 +24,15 @@ public class Assobio : MonoBehaviour
             aud.Play();
             canUse = false;
         }
+
+        if (!GameManager.instance.IsPaused())
+        {
+            anim.speed = 1;
+        }
+        else
+        {
+            anim.speed = 0;
+        }
     } 
 
     public void EnableUse()

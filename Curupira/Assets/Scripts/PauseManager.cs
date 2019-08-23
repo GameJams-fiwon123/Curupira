@@ -20,9 +20,18 @@ public class PauseManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             img.enabled = !img.enabled;
+
+            if (img.enabled)
+            {
+                GameManager.instance.SetPaused(true);
+            }
+            else
+            {
+                GameManager.instance.SetPaused(false);
+            }
         }
 
         if (img.enabled)
@@ -45,7 +54,7 @@ public class PauseManager : MonoBehaviour
                     index = 0;
                 }
             }
-            if (Input.GetKeyDown(KeyCode.Return))
+            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z))
             {
                 switch (index)
                 {
@@ -57,6 +66,15 @@ public class PauseManager : MonoBehaviour
                         break;
                     case 2:
                         img.enabled = false;
+
+                        if (img.enabled)
+                        {
+                            GameManager.instance.SetPaused(true);
+                        }
+                        else
+                        {
+                            GameManager.instance.SetPaused(false);
+                        }
                         break;
                 }
             }

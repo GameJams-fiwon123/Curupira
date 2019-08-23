@@ -34,8 +34,11 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Inputs();
-        Move();
+        if (!GameManager.instance.IsPaused())
+        {
+            Inputs();
+            Move();
+        }
     }
 
     private void Inputs()

@@ -6,6 +6,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
+    bool isPaused = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,4 +31,13 @@ public class GameManager : MonoBehaviour
         FindObjectOfType<LevelManager>().LoadNextLevel();
     }
         
+    public void SetPaused(bool flag)
+    {
+        isPaused = flag;
+    }
+
+    public bool IsPaused()
+    {
+        return isPaused;
+    }
 }

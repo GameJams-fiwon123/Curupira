@@ -299,9 +299,9 @@ MonoBehaviour:
   dialogues:
   - 
   - Curupira is an entity that lives in the forests of Brazil.
-  - It protects the brazilian fauna and flora.
+  - He protects the brazilian fauna and flora.
   - 
-  - With his feet turned back he deceives the hunters.
+  - With his feet turned back he deceives the hunters
   - And make them get lost in the woods.
 --- !u!95 &255326993
 Animator:

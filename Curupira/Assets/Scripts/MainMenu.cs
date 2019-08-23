@@ -53,7 +53,7 @@ public class MainMenu : MonoBehaviour
             aud.clip = audioClips[1];
             aud.Play();
         }
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             
             switch (index)

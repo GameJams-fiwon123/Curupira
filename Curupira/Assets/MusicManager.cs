@@ -5,9 +5,9 @@ using UnityEngine;
 public class MusicManager : MonoBehaviour
 {
     [SerializeField]
-    private AudioSource canal3;
+    private AudioSource canal3 = null;
 
-    public MusicManager instance;
+    public MusicManager instance = null;
 
     // Start is called before the first frame update
     private void Awake()

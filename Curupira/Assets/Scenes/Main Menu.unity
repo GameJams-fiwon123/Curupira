@@ -132,7 +132,7 @@ GameObject:
   - component: {fileID: 314300184}
   - component: {fileID: 314300183}
   m_Layer: 5
-  m_Name: Image
+  m_Name: GBJAM
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -261,9 +261,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: e43f6bd91e97e9048a04dcde2c2f7755,
-      type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: e43f6bd91e97e9048a04dcde2c2f7755, type: 3}
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 21300000, guid: e43f6bd91e97e9048a04dcde2c2f7755, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -278,7 +277,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1134486073}
-        m_MethodName: LoadCredits
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -424,9 +423,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 930f0fcb3bca85243b3fd453ea7eedd4,
-      type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 930f0fcb3bca85243b3fd453ea7eedd4, type: 3}
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 21300000, guid: 930f0fcb3bca85243b3fd453ea7eedd4, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -441,7 +439,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1134486073}
-        m_MethodName: LoadCredits
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -527,9 +525,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: b474e87de85e18743a62bb96af3412f1,
-      type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: b474e87de85e18743a62bb96af3412f1, type: 3}
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 21300000, guid: b474e87de85e18743a62bb96af3412f1, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:
@@ -544,7 +541,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1134486073}
-        m_MethodName: ExitGame
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -950,9 +947,8 @@ MonoBehaviour:
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
-    m_HighlightedSprite: {fileID: 21300000, guid: 6d8a3ac692711d14e97b960f17a4adad,
-      type: 3}
-    m_PressedSprite: {fileID: 21300000, guid: 6d8a3ac692711d14e97b960f17a4adad, type: 3}
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
     m_SelectedSprite: {fileID: 21300000, guid: 6d8a3ac692711d14e97b960f17a4adad, type: 3}
     m_DisabledSprite: {fileID: 0}
   m_AnimationTriggers:

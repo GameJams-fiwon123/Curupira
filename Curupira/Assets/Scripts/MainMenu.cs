@@ -6,13 +6,13 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviour
 {
     [SerializeField]
-    Button[] options;
+    Button[] options = null;
 
     
     private AudioSource aud;
 
     [SerializeField]
-    private AudioClip[] audioClips;
+    private AudioClip[] audioClips = null;
     private int index = 3;
 
     private void Awake()

@@ -8,9 +8,6 @@ public class Hunter : MonoBehaviour
 
     [SerializeField] GameObject prefabBullet = null;
 
-    [Header("Settings Hunter")]
-    [SerializeField] float speed = 100;
-
     private Rigidbody2D rb2D;
     private Animator anim;
     private SpriteRenderer spr;
@@ -46,7 +43,6 @@ public class Hunter : MonoBehaviour
     void SearchNextPath()
     {
         index++;
-        print(index);
         if (index == paths.childCount)
         {
             index = 0;
@@ -151,8 +147,11 @@ public class Hunter : MonoBehaviour
             }
             else
             {
-                StopCoroutine(firing);
-                firing = null;
+                if (firing != null)
+                {
+                    StopCoroutine(firing);
+                    firing = null;
+                }
                 follow = null;
             }
         }

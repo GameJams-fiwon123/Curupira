@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class PauseManager : MonoBehaviour
 {
     [SerializeField]
-    Sprite[] options;
+    Sprite[] options = null;
 
     private Image img;
     private int index = 2;

@@ -12,7 +12,7 @@ public class DialogueManager : MonoBehaviour
     private Animator anim;
 
     [SerializeField]
-    private string[] dialogues;
+    private string[] dialogues = null;
     int index = -1;
 
     // Start is called before the first frame update

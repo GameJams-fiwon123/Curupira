@@ -6,9 +6,6 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private GameObject footprintPrefab = null;
-    private bool canPutFootprint = true;
-    private bool canDestroyFootprint = false;
-    private GameObject lastFootprint;
 
     private Rigidbody2D rb = null;
     private Animator anim = null;
@@ -101,7 +98,6 @@ public class Player : MonoBehaviour
             }
             else
             {
-                print(motions.Count );
                 lastMotion = motions[0];
                 motions.RemoveAt(0);
             }
@@ -124,7 +120,6 @@ public class Player : MonoBehaviour
             {
                 motions.RemoveAt(0);
                 newPosition = Vector3.zero;
-                canPutFootprint = true;
             }
         }
     }
@@ -132,26 +127,11 @@ public class Player : MonoBehaviour
     private void PutFootprint()
     {
         if(Input.GetKeyDown(KeyCode.X))
-       // if (canPutFootprint)
         {
-            //if (newPosition != Vector3.zero)
-           // {
                 Vector3 direction = lastMotion+transform.position - transform.position;
                 direction = direction.normalized;
 
                 GameObject instanceFootprint = Instantiate(footprintPrefab, transform.position, Quaternion.identity);
-
-                //if ((direction.x != lastMotion.x || direction.y != lastMotion.y) && lastMotion != Vector2.zero)
-                //{
-                //    aux = direction;
-                //    direction = lastMotion;
-                //    lastMotion = aux;
-                //}
-                //else
-                //{
-                //    //aux = lastMotion;
-                //    lastMotion = direction;
-                //}
 
                 instanceFootprint.GetComponent<Footprint>().NextPosition = transform.position - direction;
 
@@ -171,9 +151,6 @@ public class Player : MonoBehaviour
                 {
                     instanceFootprint.transform.eulerAngles = Vector3.forward * 180;
                 }
-
-                canPutFootprint = false;
-          //  }
         }
     }
 
@@ -185,8 +162,6 @@ public class Player : MonoBehaviour
             transform.position = savePosition;
             motions.RemoveAt(0);
             newPosition = Vector3.zero;
-            canPutFootprint = true;
-           // lastMotion = aux;
         }
         else
         {

@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8278895463616835100}
   - component: {fileID: 8278895463616835099}
   - component: {fileID: 8278895463616835098}
+  - component: {fileID: 1002371234776187290}
   m_Layer: 18
   m_Name: Ararajuba
   m_TagString: Ararajuba
@@ -110,3 +111,22 @@ CircleCollider2D:
   m_Offset: {x: 0.02292025, y: 0.0070397854}
   serializedVersion: 2
   m_Radius: 0.37851775
+--- !u!95 &1002371234776187290
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8278895463616835097}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 04c006c7fb17fce4dbc623df58d9b3a0, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

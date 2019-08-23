@@ -19,10 +19,6 @@ public class Hunter : MonoBehaviour
     int index = -1;
     private Vector3 currentPathPosition;
 
-    public float floatHeight;     // Desired floating height.
-    public float liftForce;       // Force to apply when lifting the rigidbody.
-    public float damping;         // Force reduction proportional to speed (reduces bouncing).
-
     Coroutine firing = null;
 
 
@@ -178,7 +174,7 @@ public class Hunter : MonoBehaviour
                 float distance = Vector2.Distance(hits[i].point, transform.position);
                 Debug.DrawRay(transform.position, motion * 100, Color.yellow);
 
-                if (hits[i].collider.name == "Player" || hits[i].collider.name == "Jaguar" || hits[i].collider.name == "Ararajuba")
+                if (hits[i].collider.tag == "Player" || hits[i].collider.tag == "Jaguar" || hits[i].collider.tag == "Ararajuba")
                 {
                     isCatch = true;
                     follow = hits[i].collider.transform;

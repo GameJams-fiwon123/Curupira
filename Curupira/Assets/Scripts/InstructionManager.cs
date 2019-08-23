@@ -10,16 +10,16 @@ public class InstructionManager : MonoBehaviour
     Color32 colorUnselect = new Color32(70, 135, 143, 255);
 
     [SerializeField]
-    TextMeshProUGUI txtButtonPrevious;
+    TextMeshProUGUI txtButtonPrevious = null;
 
     [SerializeField]
-    TextMeshProUGUI txtButtonNext;
+    TextMeshProUGUI txtButtonNext = null;
 
     [SerializeField]
-    Image img;
+    Image img = null;
 
     [SerializeField]
-    Sprite[] rules;
+    Sprite[] rules = null;
     int index = 0;
 
     bool isNext = true;

@@ -29,6 +29,9 @@ public class Hunter : MonoBehaviour
     private float rateTimeCollison = 0.1f;
     private float waitTimeCollision = 0f;
 
+    private bool isStartAssobio = false;
+    Coroutine assobiando = null;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -70,12 +73,12 @@ public class Hunter : MonoBehaviour
             if (waitTimeCollision < rateTimeCollison)
                 waitTimeCollision += Time.deltaTime;
 
-            if (firing == null)
+            if (firing == null && !isStartAssobio)
             {
                 Move();
-                ProcessAnimation();
             }
 
+            ProcessAnimation();
             See();
             Fire();
         }
@@ -178,6 +181,12 @@ public class Hunter : MonoBehaviour
                 {
                     isCatch = true;
                     target = hits[i].collider.transform;
+
+                    if (assobiando != null) {
+                        StopCoroutine(assobiando);
+                        assobiando = null;
+                        isStartAssobio = false;
+                    }
                 }
             } 
         }
@@ -191,6 +200,7 @@ public class Hunter : MonoBehaviour
             {
                 anim.SetBool("IsIdle", true);
                 firing = StartCoroutine(StartFire());
+                motion = Vector2.zero;
             }
         }
         else
@@ -232,11 +242,8 @@ public class Hunter : MonoBehaviour
         }
         else if (collision.tag == "Pathing")
         {
-            //if (paths.gameObject != collision.gameObject)
-            //{
-                paths = collision.gameObject.transform;
-                index = -1;
-            //}
+            paths = collision.gameObject.transform;
+            index = -1;
         }
     }
 
@@ -247,14 +254,6 @@ public class Hunter : MonoBehaviour
             paths = collision.gameObject.transform;
         }
     }
-
-    //private void OnTriggerExit2D(Collider2D collision)
-    //{
-    //    if (collision.tag == "Pathing")
-    //    {
-    //        paths = null;
-    //    }
-    //}
 
 
 
@@ -270,5 +269,47 @@ public class Hunter : MonoBehaviour
             SearchNextPath();
             waitTimeCollision = 0f;
         }
+    }
+
+    public void TakeAssobio()
+    {
+        if (assobiando == null)
+        {
+            isStartAssobio = true;
+            assobiando = StartCoroutine(StartEffectAssobio());
+        }
+    }
+
+    IEnumerator StartEffectAssobio()
+    {
+
+        anim.SetBool("IsIdle", false);
+        motion = Vector2.up;
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("IsIdle", true);
+        yield return new WaitForSeconds(0.5f);
+
+        anim.SetBool("IsIdle", false);
+        motion = Vector2.right;
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("IsIdle", true);
+        yield return new WaitForSeconds(0.5f);
+
+        anim.SetBool("IsIdle", false);
+        motion = Vector2.down;
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("IsIdle", true);
+        yield return new WaitForSeconds(0.5f);
+
+        anim.SetBool("IsIdle", false);
+        motion = Vector2.left;
+        yield return new WaitForSeconds(0.5f);
+        anim.SetBool("IsIdle", true);
+        yield return new WaitForSeconds(0.5f);
+
+        anim.SetBool("IsIdle", false);
+        isStartAssobio = false;
+
+        assobiando = null;
     }
 }

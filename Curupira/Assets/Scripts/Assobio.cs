@@ -26,9 +26,11 @@ public class Assobio : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Z) && canUse)
             {
+                canUse = false;
+                FindObjectOfType<Hunter>().TakeAssobio();
+
                 anim.SetBool("canUse", true);
                 aud.Play();
-                canUse = false;
             }
         }
         else

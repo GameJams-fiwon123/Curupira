@@ -47,11 +47,11 @@ public class Bullet : MonoBehaviour
         {
             if (direction.y > 0)
             {
-                transform.eulerAngles = Vector3.forward * -90;
+                transform.eulerAngles = Vector3.forward * 90;
             }
             else
             {
-                transform.eulerAngles = Vector3.forward * 90;
+                transform.eulerAngles = Vector3.forward * -90;
             }
         }
     }

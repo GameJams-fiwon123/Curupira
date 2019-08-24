@@ -180,6 +180,7 @@ public class Hunter : MonoBehaviour
         {
             if (firing == null)
             {
+                anim.SetBool("IsIdle", true);
                 firing = StartCoroutine(StartFire());
             }
         }
@@ -187,6 +188,7 @@ public class Hunter : MonoBehaviour
         {
             if (firing != null)
             {
+                anim.SetBool("IsIdle", false);
                 StopCoroutine(firing);
                 firing = null;
             }

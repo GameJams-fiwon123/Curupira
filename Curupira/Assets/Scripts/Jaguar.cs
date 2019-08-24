@@ -10,7 +10,7 @@ public class Jaguar : MonoBehaviour
 
     [Header("Settings Path")]
     [SerializeField] Transform paths = null;
-    int index = -1;
+    [SerializeField] int index = -1;
     private Vector3 currentPathPosition;
     private Vector3 motion = Vector3.zero;
     [SerializeField] private bool IsMove = true;

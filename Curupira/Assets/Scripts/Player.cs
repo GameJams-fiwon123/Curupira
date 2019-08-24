@@ -89,7 +89,7 @@ public class Player : MonoBehaviour
     {
         if (motions.Count > 0 && newPosition == Vector3.zero)
         {
-
+            // Walk
             if (lastMotion.x == motions[0].x && lastMotion.y == motions[0].y)
             {
                 savePosition = transform.position;
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
                 newPosition.y += motions[0].y;
                 lastMotion = motions[0];
             }
-            else
+            else // Not Walk
             {
                 lastMotion = motions[0];
                 motions.RemoveAt(0);

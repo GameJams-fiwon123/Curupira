@@ -12,6 +12,7 @@ public class Hunter : MonoBehaviour
     private Animator anim;
     private SpriteRenderer spr;
     private Vector3 motion = Vector3.zero;
+    private Vector3 lastMotion = Vector3.zero;
 
     [Header("Settings Path")]
     [SerializeField] Transform paths = null;
@@ -44,13 +45,20 @@ public class Hunter : MonoBehaviour
 
     void SearchNextPath()
     {
-        index++;
-        if (index == paths.childCount)
+        if (paths != null)
         {
-            index = 0;
-        }
+            index++;
+            if (index == paths.childCount)
+            {
+                index = 0;
+            }
 
-        currentPathPosition = paths.GetChild(index).position;
+            currentPathPosition = paths.GetChild(index).position;
+        }
+        else
+        {
+            currentPathPosition = transform.position + lastMotion;
+        }
 
     }
 
@@ -80,7 +88,6 @@ public class Hunter : MonoBehaviour
         if (footprintPositions.Count > 0)
         {
             currentPosition = footprintPositions[0];
-
         }
         else
         {
@@ -106,6 +113,8 @@ public class Hunter : MonoBehaviour
             transform.position = currentPosition;
             SearchNextPath();
         }
+
+        lastMotion = motion;
     }
 
     private void ProcessAnimation()
@@ -219,24 +228,31 @@ public class Hunter : MonoBehaviour
             footprintPositions.Add(collision.transform.position);
             footprintPositions.Add(collision.GetComponent<Footprint>().NextPosition);
             Destroy(collision.gameObject);
+            paths = null;
         }
         else if (collision.tag == "Pathing")
         {
-            if (paths.gameObject != collision.gameObject)
-            {
+            //if (paths.gameObject != collision.gameObject)
+            //{
                 paths = collision.gameObject.transform;
                 index = -1;
-            }
+            //}
         }
-        
+    }
+
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.tag == "Pathing")
+        {
+            paths = collision.gameObject.transform;
+        }
     }
 
     //private void OnTriggerExit2D(Collider2D collision)
     //{
     //    if (collision.tag == "Pathing")
     //    {
-    //        print("oi");
-    //        paths = transform.GetChild(0);
+    //        paths = null;
     //    }
     //}
 

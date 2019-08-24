@@ -20,7 +20,7 @@ public class Jaguar : MonoBehaviour
         {
             anim.SetBool("IsDie", true);
             col2D.enabled = false;
-            Invoke("Die", 1.5f);
+            Invoke("Die", 0.5f);
         }
     }
 

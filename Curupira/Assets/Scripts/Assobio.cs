@@ -18,16 +18,18 @@ public class Assobio : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z) && canUse)
-        {
-            anim.SetBool("canUse", true);
-            aud.Play();
-            canUse = false;
-        }
+        
 
         if (!GameManager.instance.IsPaused())
         {
             anim.speed = 1;
+
+            if (Input.GetKeyDown(KeyCode.Z) && canUse)
+            {
+                anim.SetBool("canUse", true);
+                aud.Play();
+                canUse = false;
+            }
         }
         else
         {

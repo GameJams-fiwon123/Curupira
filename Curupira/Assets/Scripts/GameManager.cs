@@ -21,6 +21,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            FindObjectOfType<LevelManager>().LoadAgain();
+        }
+    }
+
     public void GameOver()
     {
         FindObjectOfType<LevelManager>().LoadAgain();

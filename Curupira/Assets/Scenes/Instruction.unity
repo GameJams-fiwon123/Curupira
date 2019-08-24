@@ -527,6 +527,7 @@ MonoBehaviour:
   img: {fileID: 1495049471}
   rules:
   - {fileID: 21300000, guid: bf5a18c95902fc642b811217d32cfce2, type: 3}
+  - {fileID: 21300000, guid: cd95802054e585a449b952f9874ff58b, type: 3}
   - {fileID: 21300000, guid: 12cb12963a3e9eb4c99b475ca3f537f5, type: 3}
   - {fileID: 21300000, guid: 5ff9819da71f07a4ab3dff06b93d072c, type: 3}
   - {fileID: 21300000, guid: 633c463de61cfd1449806e584dd47b26, type: 3}

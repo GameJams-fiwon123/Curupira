@@ -11,14 +11,14 @@ public class Hunter : MonoBehaviour
     private Rigidbody2D rb2D;
     private Animator anim;
     private SpriteRenderer spr;
-    private Vector3 motion = Vector3.zero;
-    private Vector3 lastMotion = Vector3.zero;
+
 
     [Header("Settings Path")]
     [SerializeField] Transform paths = null;
-
     int index = -1;
     private Vector3 currentPathPosition;
+    private Vector3 motion = Vector3.zero;
+    private Vector3 lastMotion = Vector3.zero;
 
     private List<Vector3> footprintPositions = new List<Vector3>();
 
@@ -26,7 +26,7 @@ public class Hunter : MonoBehaviour
     private bool isCatch = false;
 
 
-    private float rateTimeCollison = 0.5f;
+    private float rateTimeCollison = 0.1f;
     private float waitTimeCollision = 0f;
 
     // Start is called before the first frame update

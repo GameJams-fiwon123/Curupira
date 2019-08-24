@@ -15,6 +15,7 @@ public class Jaguar : MonoBehaviour
     private Vector3 motion = Vector3.zero;
     [SerializeField] private bool IsMove = true;
     [SerializeField] private bool IsLoop = true;
+    [SerializeField] private bool IsAnti = false;
 
     private bool isDie = false;
 
@@ -33,22 +34,40 @@ public class Jaguar : MonoBehaviour
 
     void SearchNextPath()
     {
-        index++;
-        if (index == paths.childCount)
+        if (IsMove)
         {
-            if (IsLoop)
+            if (!IsAnti)
             {
-                index = 0;
+                index++;
+                if (index == paths.childCount)
+                {
+                    if (!IsLoop)
+                    {
+                        IsMove = false;
+                        motion = Vector3.zero;
+                    }
+
+                    index = 0;
+                }
+
             }
             else
             {
-                IsMove = false;
-                motion = Vector3.zero;
+                index--;
+                if (index <= -1)
+                {
+                    if (!IsLoop)
+                    {
+                        IsMove = false;
+                        motion = Vector3.zero;
+                    }
+
+                    index = paths.childCount - 1;
+                }
             }
-        }
-        else
-        {
+
             currentPathPosition = paths.GetChild(index).position;
+            
         }
 
     }

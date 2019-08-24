@@ -18,6 +18,8 @@ public class Player : MonoBehaviour
     private Vector3 lastMotion = Vector3.down;
     private Vector3 aux;
 
+    private bool isDie = false;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -34,7 +36,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.IsPaused())
+        if (!GameManager.instance.IsPaused() && !isDie)
         {
             Inputs();
             Move();
@@ -169,7 +171,7 @@ public class Player : MonoBehaviour
         }
         else
         {
-            GameManager.instance.GameOver();
+            Die();
         }
     }
 
@@ -177,7 +179,22 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Bullet")
         {
-            GameManager.instance.GameOver();
+            Die();
         }
+    }
+
+    private void Die()
+    {
+        if (!isDie)
+        {
+            isDie = true;
+            anim.SetBool("IsDie", true);
+            Invoke("GameOver", 0.5f);
+        }
+    }
+
+    private void GameOver()
+    {
+        GameManager.instance.GameOver();
     }
 }

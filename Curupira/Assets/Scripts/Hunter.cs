@@ -68,7 +68,7 @@ public class Hunter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.IsPaused())
+        if (GameManager.instance.IsStarted()  && !GameManager.instance.IsPaused())
         {
             if (waitTimeCollision < rateTimeCollison)
                 waitTimeCollision += Time.deltaTime;

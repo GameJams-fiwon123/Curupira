@@ -19,12 +19,15 @@ public class Jaguar : MonoBehaviour
 
     private bool isDie = false;
 
+    private AudioSource aud;
+
     // Start is called before the first frame update
     void Awake()
     {
         anim = GetComponent<Animator>();
         col2D = GetComponent<Collider2D>();
         spr = GetComponent<SpriteRenderer>();
+        aud = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -74,7 +77,7 @@ public class Jaguar : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance.IsPaused() && IsMove && !isDie)
+        if (GameManager.instance.IsStarted()  && !GameManager.instance.IsPaused() && IsMove && !isDie)
         {
             Move();
         }
@@ -144,6 +147,7 @@ public class Jaguar : MonoBehaviour
             col2D.enabled = false;
             Invoke("Die", 0.5f);
             isDie = true;
+            aud.Play();
         }
     }
 

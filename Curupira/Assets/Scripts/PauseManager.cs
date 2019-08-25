@@ -8,6 +8,8 @@ public class PauseManager : MonoBehaviour
     [SerializeField]
     Sprite[] options = null;
 
+    private AudioSource aud;
+
     private Image img;
     private int index = 2;
 
@@ -15,6 +17,7 @@ public class PauseManager : MonoBehaviour
     void Start()
     {
         img = GetComponent<Image>();
+        aud = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -44,6 +47,8 @@ public class PauseManager : MonoBehaviour
                 {
                     index = options.Length - 1;
                 }
+
+                aud.Play();
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
@@ -53,6 +58,8 @@ public class PauseManager : MonoBehaviour
                 {
                     index = 0;
                 }
+
+                aud.Play();
             }
             if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Z))
             {

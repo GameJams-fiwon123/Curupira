@@ -20,12 +20,17 @@ public class Player : MonoBehaviour
 
     private bool isDie = false;
 
+    private AudioSource aud;
+    private Collider2D col2D;
+
     // Start is called before the first frame update
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         spr = GetComponent<SpriteRenderer>();
+        aud = GetComponent<AudioSource>();
+        col2D = GetComponent<Collider2D>();
     }
 
     private void Start()
@@ -36,7 +41,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!GameManager.instance.IsPaused() && !isDie)
+        if (GameManager.instance.IsStarted() && !GameManager.instance.IsPaused() && !isDie)
         {
             Inputs();
             Move();
@@ -189,7 +194,9 @@ public class Player : MonoBehaviour
         {
             isDie = true;
             anim.SetBool("IsDie", true);
+            col2D.enabled = false;
             Invoke("GameOver", 0.5f);
+            aud.Play();
         }
     }
 

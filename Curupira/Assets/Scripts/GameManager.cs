@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
 
     bool isPaused = false;
+    bool isStarted = false;
 
     // Start is called before the first frame update
     void Awake()
@@ -42,6 +43,16 @@ public class GameManager : MonoBehaviour
     public void SetPaused(bool flag)
     {
         isPaused = flag;
+    }
+
+    public void SetStarted(bool flag)
+    {
+        isStarted = flag;
+    }
+
+    public bool IsStarted()
+    {
+        return isStarted;
     }
 
     public bool IsPaused()

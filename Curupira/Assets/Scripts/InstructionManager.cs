@@ -18,11 +18,18 @@ public class InstructionManager : MonoBehaviour
     [SerializeField]
     Image img = null;
 
+    private AudioSource aud;
+
     [SerializeField]
     Sprite[] rules = null;
     int index = 0;
 
     bool isNext = true;
+
+    private void Awake()
+    {
+        aud = GetComponent<AudioSource>();
+    }
 
     // Update is called once per frame
     void Update()
@@ -70,17 +77,25 @@ public class InstructionManager : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            isNext = true;
-            txtButtonNext.color = colorSelect;
-            txtButtonPrevious.color = colorUnselect;
+            if (!isNext)
+            {
+                isNext = true;
+                txtButtonNext.color = colorSelect;
+                txtButtonPrevious.color = colorUnselect;
+                aud.Play();
+            }
         }
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
             if (index > 0)
             {
-                isNext = false;
-                txtButtonPrevious.color = colorSelect;
-                txtButtonNext.color = colorUnselect;
+                if (isNext)
+                {
+                    isNext = false;
+                    txtButtonPrevious.color = colorSelect;
+                    txtButtonNext.color = colorUnselect;
+                    aud.Play();
+                }
             }
         }
     }

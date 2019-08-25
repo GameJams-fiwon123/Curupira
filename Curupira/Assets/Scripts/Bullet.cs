@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        if (!GameManager.instance.IsPaused())
+        if (GameManager.instance.IsStarted()  && !GameManager.instance.IsPaused())
         {
             rb2D.velocity = direction.normalized * speed * Time.deltaTime;
         }

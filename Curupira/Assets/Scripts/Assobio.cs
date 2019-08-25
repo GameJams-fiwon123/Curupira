@@ -20,7 +20,7 @@ public class Assobio : MonoBehaviour
     {
         
 
-        if (!GameManager.instance.IsPaused())
+        if (GameManager.instance.IsStarted()  && !GameManager.instance.IsPaused())
         {
             anim.speed = 1;
 

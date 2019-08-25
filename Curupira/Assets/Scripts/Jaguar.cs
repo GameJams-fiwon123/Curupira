@@ -162,4 +162,16 @@ public class Jaguar : MonoBehaviour
         index = -1;
         SearchNextPath();
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            anim.SetBool("IsDie", true);
+            col2D.enabled = false;
+            Invoke("Die", 0.5f);
+            isDie = true;
+            aud.Play();
+        }
+    }
 }

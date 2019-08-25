@@ -12,7 +12,9 @@ public class Player : MonoBehaviour
     private SpriteRenderer spr = null;
     private List<Vector2> motions = new List<Vector2>();
 
-    private Vector3 savePosition;
+    private List<Vector3> savePosition = new List<Vector3>();
+    private int index = -1;
+
     private Vector3 newPosition = Vector3.zero;
 
     private Vector3 lastMotion = Vector3.down;
@@ -35,7 +37,8 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
-        savePosition = transform.position;
+        index++;
+        savePosition.Add(transform.position);
     }
 
     // Update is called once per frame
@@ -99,7 +102,9 @@ public class Player : MonoBehaviour
             // Walk
             if (lastMotion.x == motions[0].x && lastMotion.y == motions[0].y)
             {
-                savePosition = transform.position;
+                index++;
+                print("Salvar o ponto: " + index);
+                savePosition.Add(transform.position);
 
                 newPosition = transform.position;
                 newPosition.x += motions[0].x;
@@ -169,7 +174,14 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag != "Enemy")
         {
-            transform.position = savePosition;
+            if (index > -1)
+            {
+                print("Voltar ao ponto: " + index);
+                transform.position = savePosition[index];
+                savePosition.RemoveAt(index);
+                index--;
+            }
+
             if (motions.Count > 0)
                 motions.RemoveAt(0);
             newPosition = Vector3.zero;

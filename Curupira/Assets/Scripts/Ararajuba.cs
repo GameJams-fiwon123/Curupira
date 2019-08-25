@@ -32,4 +32,15 @@ public class Ararajuba : MonoBehaviour
     {
         GameManager.instance.GameOver();
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            anim.SetBool("IsDie", true);
+            col2D.enabled = false;
+            Invoke("Die", 0.5f);
+            aud.Play();
+        }
+    }
 }

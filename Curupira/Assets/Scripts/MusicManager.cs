@@ -74,6 +74,7 @@ public class MusicManager : MonoBehaviour
 
     public void PlayMusic1()
     {
+        canal1.Stop();
         DisableChannel();
         canal3.clip = musics[0];
         canal3.Play();
@@ -81,6 +82,7 @@ public class MusicManager : MonoBehaviour
 
     public void PlayMusic2()
     {
+        canal1.Stop();
         DisableChannel();
         canal3.clip = musics[1];
         canal3.Play();
@@ -88,6 +90,7 @@ public class MusicManager : MonoBehaviour
 
     public void PlayMusic3()
     {
+        canal1.Stop();
         DisableChannel();
         canal3.clip = musics[2];
         canal3.Play();
@@ -95,6 +98,7 @@ public class MusicManager : MonoBehaviour
 
     public void PlayStory()
     {
+        canal1.Stop();
         DisableChannel();
         if (canal3.clip != historia)
         {
@@ -105,6 +109,7 @@ public class MusicManager : MonoBehaviour
 
     public void PlayFinal()
     {
+        canal1.Stop();
         DisableChannel();
         if (canal3.clip != final)
         {

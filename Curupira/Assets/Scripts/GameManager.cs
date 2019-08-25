@@ -22,6 +22,11 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        MusicManager.instance.PlayRandomMusic();
+    }
+
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.R))

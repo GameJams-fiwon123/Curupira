@@ -5,7 +5,7 @@ using UnityEngine;
 public class DetectHunter : MonoBehaviour
 {
     [SerializeField]
-    private Jaguar refJaguar;
+    private Jaguar refJaguar = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

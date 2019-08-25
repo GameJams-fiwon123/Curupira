@@ -7,7 +7,15 @@ public class MusicManager : MonoBehaviour
     [SerializeField]
     private AudioSource canal3 = null;
 
-    public MusicManager instance = null;
+    [SerializeField]
+    private AudioSource canal1 = null;
+
+    public static MusicManager instance = null;
+
+    [SerializeField] private AudioClip[] musics = null;
+
+    [SerializeField] private AudioClip historia = null;
+    [SerializeField] private AudioClip final = null;
 
     // Start is called before the first frame update
     private void Awake()
@@ -23,19 +31,76 @@ public class MusicManager : MonoBehaviour
         }
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void EnableChannel()
     {
-        canal3.volume = 1;
+        canal1.volume = 1;
     }
 
     public void DisableChannel()
     {
+        canal1.volume = 0;
+    }
+
+    public void EnableChanne3()
+    {
+        canal3.volume = 1;
+    }
+
+    public void DisableChannel3()
+    {
         canal3.volume = 0;
+    }
+
+    public void PlayStory()
+    {
+        DisableChannel();
+        canal3.clip = historia;
+        canal3.Play();
+    }
+
+    public void PlayRandomMusic()
+    {
+        int index = Random.Range(0, 3);
+
+        switch (index)
+        {
+            case 0:
+                PlayMusic1();
+                break;
+            case 1:
+                PlayMusic2();
+                break;
+            case 2:
+                PlayMusic3();
+                break;
+        }
+    }
+
+    public void PlayMusic1()
+    {
+        DisableChannel();
+        canal3.clip = musics[0];
+        canal3.Play();
+    }
+
+    public void PlayMusic2()
+    {
+        DisableChannel();
+        canal3.clip = musics[1];
+        canal3.Play();
+    }
+
+    public void PlayMusic3()
+    {
+        DisableChannel();
+        canal3.clip = musics[2];
+        canal3.Play();
+    }
+
+    public void PlayFinal()
+    {
+        DisableChannel();
+        canal3.clip = final;
+        canal3.Play();
     }
 }

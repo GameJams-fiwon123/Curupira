@@ -5,6 +5,11 @@ using UnityEngine;
 public class StoryManager : MonoBehaviour
 {
 
+    private void Start()
+    {
+        MusicManager.instance.PlayStory();
+    }
+
     // Update is called once per frame
     void Update()
     {

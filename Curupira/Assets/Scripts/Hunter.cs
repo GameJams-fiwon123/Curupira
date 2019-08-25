@@ -26,7 +26,7 @@ public class Hunter : MonoBehaviour
     private bool isCatch = false;
 
 
-    private float rateTimeCollison = 0.1f;
+    private float rateTimeCollison = 0.2f;
     private float waitTimeCollision = 0f;
 
     private bool isStartAssobio = false;
@@ -78,8 +78,13 @@ public class Hunter : MonoBehaviour
                 Move();
             }
 
+            if (!isStartAssobio)
+            {
+                See();
+            }
+
             ProcessAnimation();
-            See();
+
             Fire();
         }
     }

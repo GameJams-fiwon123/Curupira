@@ -735,12 +735,12 @@ PrefabInstance:
     - target: {fileID: 5642226907257628059, guid: 56e405b1c9e79e24999ed35651581cb3,
         type: 3}
       propertyPath: m_Offset.y
-      value: 4.473529
+      value: 4.4895134
       objectReference: {fileID: 0}
     - target: {fileID: 5642226907257628059, guid: 56e405b1c9e79e24999ed35651581cb3,
         type: 3}
       propertyPath: m_Size.y
-      value: 0.995945
+      value: 1.0279107
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 56e405b1c9e79e24999ed35651581cb3, type: 3}
@@ -1039,11 +1039,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Grid
-      objectReference: {fileID: 0}
-    - target: {fileID: 4444402878383033364, guid: 45253e700b2eecd4d8ffea2bb666db70,
-        type: 3}
-      propertyPath: m_UsedByComposite
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4444402878607174853, guid: 45253e700b2eecd4d8ffea2bb666db70,
         type: 3}
@@ -7126,6 +7121,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TileSpriteArray.Array.data[0].m_RefCount
       value: 29
+      objectReference: {fileID: 0}
+    - target: {fileID: 4444402878383033364, guid: 45253e700b2eecd4d8ffea2bb666db70,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4444402878383033362, guid: 45253e700b2eecd4d8ffea2bb666db70,
         type: 3}

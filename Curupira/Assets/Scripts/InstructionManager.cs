@@ -31,6 +31,11 @@ public class InstructionManager : MonoBehaviour
         aud = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        MusicManager.instance.PlayMainMenu();
+    }
+
     // Update is called once per frame
     void Update()
     {

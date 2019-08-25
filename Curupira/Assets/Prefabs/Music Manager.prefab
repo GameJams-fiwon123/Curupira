@@ -42,7 +42,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: b8e6dbb54afe0c242ae180bec358a786, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -169,7 +169,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fd49021977e7c3d4ea2ed21a4399acad, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
@@ -301,10 +301,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canal3: {fileID: 7142817873630403817}
   canal1: {fileID: 7142817874572701524}
-  instance: {fileID: 0}
   musics:
   - {fileID: 8300000, guid: 101aa57550e3d2241adb2eed735d78c1, type: 3}
   - {fileID: 8300000, guid: adbfae6faad0b6146ae6ce0fc1a452ff, type: 3}
   - {fileID: 8300000, guid: de1a2691658bb584cb107e015a792e1d, type: 3}
   historia: {fileID: 8300000, guid: f74542994a92e524d90ea62dc2b98c3c, type: 3}
   final: {fileID: 8300000, guid: 818ca65a9c8971645a8f533ef04f292e, type: 3}
+  mainMenu: {fileID: 8300000, guid: b8e6dbb54afe0c242ae180bec358a786, type: 3}

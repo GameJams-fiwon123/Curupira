@@ -103,7 +103,6 @@ public class Player : MonoBehaviour
             if (lastMotion.x == motions[0].x && lastMotion.y == motions[0].y)
             {
                 index++;
-                print("Salvar o ponto: " + index);
                 savePosition.Add(transform.position);
 
                 newPosition = transform.position;
@@ -176,7 +175,6 @@ public class Player : MonoBehaviour
         {
             if (index > -1)
             {
-                print("Voltar ao ponto: " + index);
                 transform.position = savePosition[index];
                 savePosition.RemoveAt(index);
                 index--;

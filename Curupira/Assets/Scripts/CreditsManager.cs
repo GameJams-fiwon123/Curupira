@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class CreditsManager : MonoBehaviour
 {
+    private void Start()
+    {
+        MusicManager.instance.PlayMainMenu();
+    }
+
     // Update is called once per frame
     void Update()
     {

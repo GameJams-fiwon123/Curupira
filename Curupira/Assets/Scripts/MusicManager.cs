@@ -17,6 +17,9 @@ public class MusicManager : MonoBehaviour
     [SerializeField] private AudioClip historia = null;
     [SerializeField] private AudioClip final = null;
 
+
+    [SerializeField] private AudioClip mainMenu = null;
+
     // Start is called before the first frame update
     private void Awake()
     {
@@ -49,13 +52,6 @@ public class MusicManager : MonoBehaviour
     public void DisableChannel3()
     {
         canal3.volume = 0;
-    }
-
-    public void PlayStory()
-    {
-        DisableChannel();
-        canal3.clip = historia;
-        canal3.Play();
     }
 
     public void PlayRandomMusic()
@@ -97,10 +93,37 @@ public class MusicManager : MonoBehaviour
         canal3.Play();
     }
 
+    public void PlayStory()
+    {
+        DisableChannel();
+        if (canal3.clip != historia)
+        {
+            canal3.clip = historia;
+            canal3.Play();
+        }
+    }
+
     public void PlayFinal()
     {
         DisableChannel();
-        canal3.clip = final;
-        canal3.Play();
+        if (canal3.clip != final)
+        {
+            canal3.clip = final;
+            canal3.Play();
+        }
+    }
+
+    public void PlayMainMenu()
+    {
+        if (!canal1.isPlaying)
+            canal1.Play();
+
+        EnableChannel();
+
+        if (canal3.clip != mainMenu)
+        {
+            canal3.clip = mainMenu;
+            canal3.Play();
+        }
     }
 }

@@ -8,7 +8,7 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     Button[] options = null;
 
-    
+
     private AudioSource aud;
 
     [SerializeField]
@@ -20,12 +20,17 @@ public class MainMenu : MonoBehaviour
         aud = GetComponent<AudioSource>();
     }
 
+    private void Start()
+    {
+        MusicManager.instance.PlayMainMenu();
+    }
+
     // Update is called once per frame
     void Update()
     {
         if (!aud.isPlaying)
         {
-            FindObjectOfType<MusicManager>().EnableChannel();
+            MusicManager.instance.EnableChannel();
         }
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
@@ -36,7 +41,7 @@ public class MainMenu : MonoBehaviour
                 index = options.Length - 1;
             }
 
-            FindObjectOfType<MusicManager>().DisableChannel();
+            MusicManager.instance.DisableChannel();
             aud.clip = audioClips[1];
             aud.Play();
         }
@@ -49,7 +54,7 @@ public class MainMenu : MonoBehaviour
                 index = 0;
             }
 
-            FindObjectOfType<MusicManager>().DisableChannel();
+            MusicManager.instance.DisableChannel();
             aud.clip = audioClips[1];
             aud.Play();
         }
@@ -68,7 +73,7 @@ public class MainMenu : MonoBehaviour
                     FindObjectOfType<LevelManager>().LoadCredits();
                     break;
                 case 3:
-                    FindObjectOfType<MusicManager>().DisableChannel();
+                    MusicManager.instance.DisableChannel();
                     aud.clip = audioClips[0];
                     aud.Play();
                     StartCoroutine(StartGame());
@@ -82,7 +87,7 @@ public class MainMenu : MonoBehaviour
     IEnumerator StartGame()
     {
         yield return new WaitForSeconds(0.5f);
-        FindObjectOfType<MusicManager>().EnableChannel();
+        MusicManager.instance.EnableChannel();
         FindObjectOfType<LevelManager>().LoadNextLevel();
     }
 }

@@ -26,7 +26,7 @@ public class Hunter : MonoBehaviour
     private bool isCatch = false;
 
 
-    private float rateTimeCollison = 0.2f;
+    private float rateTimeCollison = 0.4f;
     private float waitTimeCollision = 0f;
 
     private bool isStartAssobio = false;
